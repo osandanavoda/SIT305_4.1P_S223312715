@@ -40,12 +40,37 @@ public class AddActivity extends AppCompatActivity {
 
 
 
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
     }
+
+    private boolean validateInput() {
+        String taskName = taskname_input.getText().toString().trim();
+        String taskDescription = task_description.getText().toString().trim();
+        String dueDate = editTextDate.getText().toString().trim();
+
+        if (taskName.isEmpty()) {
+            taskname_input.setError("Task name is required");
+            return false;
+        }
+
+        if (taskDescription.isEmpty()) {
+            task_description.setError("Task description is required");
+            return false;
+        }
+
+        if (dueDate.isEmpty()) {
+            editTextDate.setError("Due date is required");
+            return false;
+        }
+
+
+        return true;
+    }
+
+
+
 }
